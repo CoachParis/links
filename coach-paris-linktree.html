@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coach Paris Simone — Passports 2 Fitness</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8; --warm: #FAF7F2; --sand: #E8DDD0;
+    --taupe: #C4B5A5; --dark: #2C2418;
+    --accent: #B8965A; --text: #3D3228; --text-light: #7A6E63;
+    --green: #7A9E7E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* subtle texture */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% 10%, rgba(184,150,90,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 600px 500px at 80% 90%, rgba(122,158,126,0.05) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 560px;
+    padding: 60px 24px 80px;
+    position: relative; z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── PROFILE ── */
+  .profile { text-align: center; margin-bottom: 40px; }
+
+  .avatar {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: var(--dark);
+    margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .profile-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .profile-name em { font-style: italic; color: var(--accent); }
+
+  .profile-handle {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--taupe);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .profile-bio {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.65;
+    max-width: 380px;
+    margin: 0 auto 20px;
+  }
+
+  /* social row */
+  .social-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .social-pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--sand);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: var(--warm);
+  }
+  .social-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(184,150,90,0.06); }
+
+  /* ── DIVIDER ── */
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    background: var(--sand);
+    margin: 8px 0 32px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    width: 100%;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 14px;
+    text-align: left;
+    padding-left: 2px;
+  }
+
+  /* ── LINK CARDS ── */
+  .links { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.22s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* featured card */
+  .link-card.featured {
+    background: var(--dark);
+    color: var(--cream);
+    border: none;
+  }
+  .link-card.featured:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(44,36,24,0.22); }
+  .link-card.featured .link-title { color: var(--cream); }
+  .link-card.featured .link-desc { color: rgba(245,240,232,0.55); }
+  .link-card.featured .link-arrow { color: var(--accent); }
+  .link-card.featured .link-badge { background: rgba(184,150,90,0.2); color: var(--accent); }
+
+  /* standard card */
+  .link-card.standard {
+    background: var(--warm);
+    border: 1.5px solid var(--sand);
+  }
+  .link-card.standard:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(184,150,90,0.12); }
+
+  /* accent card */
+  .link-card.accent-card {
+    background: rgba(184,150,90,0.08);
+    border: 1.5px solid rgba(184,150,90,0.3);
+  }
+  .link-card.accent-card:hover { background: rgba(184,150,90,0.13); transform: translateY(-2px); }
+
+  .link-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .link-icon.dark-icon { background: rgba(245,240,232,0.08); }
+  .link-icon.light-icon { background: var(--sand); }
+  .link-icon.accent-icon { background: rgba(184,150,90,0.15); }
+
+  .link-body { flex: 1; min-width: 0; }
+  .link-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe); margin-bottom: 2px; }
+  .link-card.featured .link-label { color: rgba(196,181,165,0.7); }
+  .link-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 500; line-height: 1.2; }
+  .link-desc { font-size: 12px; color: var(--text-light); line-height: 1.4; margin-top: 2px; }
+
+  .link-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+  .link-badge {
+    background: rgba(184,150,90,0.12);
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .link-badge.green-badge { background: rgba(122,158,126,0.12); color: var(--green); }
+  .link-arrow { font-size: 16px; color: var(--taupe); }
+
+  /* ── VIDEO PREVIEW ── */
+  .video-card {
+    width: 100%;
+    background: var(--dark);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .video-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(44,36,24,0.2); }
+  .video-thumb {
+    background: linear-gradient(135deg, #1a1208 0%, #3d2e1a 100%);
+    height: 170px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-thumb::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(184,150,90,0.2) 0%, transparent 65%);
+  }
+  .play-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    position: relative; z-index: 1;
+    color: white;
+  }
+  .video-meta { padding: 14px 18px 16px; }
+  .video-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(196,181,165,0.6); margin-bottom: 4px; }
+  .video-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; color: var(--cream); }
+
+  /* ── SISS BADGE ── */
+  .siss-badge {
+    width: 100%;
+    background: rgba(184,150,90,0.07);
+    border: 1px solid rgba(184,150,90,0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .siss-icon { font-size: 22px; flex-shrink: 0; }
+  .siss-text { font-size: 12px; color: var(--text-light); line-height: 1.55; }
+  .siss-text strong { color: var(--accent); font-weight: 500; }
+
+  /* ── QUIZ SECTION ── */
+  .quiz-section { width: 100%; margin-bottom: 32px; }
+  .quiz-intro {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 24px 22px 20px;
+    text-align: center;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-intro::before {
+    content: '';
+    position: absolute; top: -50px; right: -50px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(184,150,90,0.1);
+    pointer-events: none;
+  }
+  .quiz-intro-eyebrow { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .quiz-intro-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 6px; }
+  .quiz-intro-title em { font-style: italic; color: var(--accent); }
+  .quiz-intro-sub { font-size: 12px; color: rgba(245,240,232,0.5); line-height: 1.5; }
+  .quiz-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .quiz-btn.phase { background: rgba(184,150,90,0.08); border: 1.5px solid rgba(184,150,90,0.25); grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; text-align: left; gap: 14px; padding: 16px 18px; }
+  .quiz-btn.phase:hover { background: rgba(184,150,90,0.13); transform: translateY(-2px); }
+  .quiz-btn.phase .quiz-btn-cta { background: rgba(184,150,90,0.15); color: var(--accent); }
+  .quiz-btn.phase .quiz-btn-label { color: var(--taupe); }
+  .quiz-btn.phase .quiz-btn-title { color: var(--text); font-size: 16px; }
+  .quiz-btn-phase-body { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .quiz-btn-phase-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; margin-top: 1px; }
+  .quiz-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 14px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.22s;
+    text-align: center;
+  }
+  .quiz-btn.nervous {
+    background: var(--warm);
+    border: 1.5px solid var(--sand);
+  }
+  .quiz-btn.nervous:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,150,90,0.12); }
+  .quiz-btn.fuel {
+    background: rgba(122,158,126,0.08);
+    border: 1.5px solid rgba(122,158,126,0.25);
+  }
+  .quiz-btn.fuel:hover { background: rgba(122,158,126,0.13); transform: translateY(-2px); }
+  .quiz-btn-icon { font-size: 22px; }
+  .quiz-btn-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe); }
+  .quiz-btn-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.2; }
+  .quiz-btn.fuel .quiz-btn-title { color: var(--text); }
+  .quiz-btn-cta {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 2px;
+  }
+  .quiz-btn.nervous .quiz-btn-cta { background: rgba(184,150,90,0.12); color: var(--accent); }
+  .quiz-btn.fuel .quiz-btn-cta { background: rgba(122,158,126,0.15); color: var(--green); }
+
+  /* ── FOOTER ── */
+  .page-footer { text-align: center; font-size: 11px; color: var(--taupe); letter-spacing: 0.06em; margin-top: 8px; }
+  .page-footer strong { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <div class="avatar">
+      <span class="avatar-initials">P</span>
+    </div>
+    <div class="profile-name">Coach <em>Paris</em> Simone</div>
+    <div class="profile-handle">@CoachParis · Passports 2 Fitness</div>
+    <p class="profile-bio">Certified trainer & founder of Passports 2 Fitness. I help high-achieving women build real strength through the Stress-Integrated Strength System™ — nervous system first, always.</p>
+    <div class="social-row">
+      <a href="https://www.instagram.com/passports2paris" class="social-pill">Instagram</a>
+      <a href="https://www.tiktok.com/@coach_paris?_r=1&_t=ZT-95mej1dMZ6k" class="social-pill">TikTok</a>
+      <a href="https://www.youtube.com/@Coach_Paris" class="social-pill">YouTube</a>
+      <a href="https://www.linkedin.com/in/paris-simone-64935b66/" class="social-pill">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- QUIZ SECTION -->
+  <div class="quiz-section">
+    <div class="quiz-intro">
+      <div class="quiz-intro-eyebrow">Not Sure Where to Start?</div>
+      <div class="quiz-intro-title">Let your body <em>tell you</em><br>what it needs first.</div>
+      <div class="quiz-intro-sub">Take one or both — each quiz routes you to the right starting point for where you actually are.</div>
+    </div>
+    <div class="quiz-buttons">
+      <a href="https://reset-rebuild.carrd.co/" class="quiz-btn nervous">
+        <div class="quiz-btn-icon">🧠</div>
+        <div class="quiz-btn-label">Nervous System</div>
+        <div class="quiz-btn-title">Starting Point Quiz</div>
+        <div class="quiz-btn-cta">Take the Quiz →</div>
+      </a>
+      <a href="https://coachparis.github.io/fuel-check/" class="quiz-btn fuel">
+        <div class="quiz-btn-icon">🥗</div>
+        <div class="quiz-btn-label">Nutrition</div>
+        <div class="quiz-btn-title">Fuel Check Quiz</div>
+        <div class="quiz-btn-cta">Take the Quiz →</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- VIDEO TUTORIAL -->
+  <div class="section-label">Watch First</div>
+  <a href="https://www.youtube.com/@Coach_Paris" class="video-card">
+    <div class="video-thumb">
+      <div class="play-btn">▶</div>
+    </div>
+    <div class="video-meta">
+      <div class="video-label">YouTube Tutorial</div>
+      <div class="video-title">Inside Rebuild & Rise™ — Full App Walkthrough</div>
+    </div>
+  </a>
+
+  <!-- SISS EXPLAINER -->
+  <div class="siss-badge">
+    <div class="siss-icon">🧠</div>
+    <div class="siss-text">All of my programs are built on the <strong>Stress-Integrated Strength System™</strong> — a methodology designed to train your nervous system and your body together. Start where you are.</div>
+  </div>
+
+  <!-- OFFERS -->
+  <div class="section-label">Enter at the Level You Need</div>
+  <div class="links">
+
+    <!-- Reset & Rebuild -->
+    <a href="https://stan.store/Coach_Paris/p/the-7day-strength-reset" class="link-card standard">
+      <div class="link-icon light-icon">✦</div>
+      <div class="link-body">
+        <div class="link-label">Starting Point</div>
+        <div class="link-title">Reset & Rebuild™</div>
+        <div class="link-desc">7 days to rewire your body for strength. The foundation of the SISS method.</div>
+      </div>
+      <div class="link-right">
+        <span class="link-badge">$17</span>
+        <span class="link-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Rebuild & Rise -->
+    <a href="https://buy.stripe.com/aFa5kE3Ku2JnfBS1LW3AY0g" class="link-card featured">
+      <div class="link-icon dark-icon">🏗</div>
+      <div class="link-body">
+        <div class="link-label">Guided Program</div>
+        <div class="link-title">Rebuild & Rise™</div>
+        <div class="link-desc">30-day guided coaching experience built on the full SISS methodology. Capacity check-ins, progressive training, structured support, and real-time guidance inside the app.</div>
+      </div>
+      <div class="link-right">
+        <span class="link-badge">$147</span>
+        <span class="link-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 1:1 Coaching -->
+    <a href="https://schedule.fillout.com/t/uFpHY18tTous" class="link-card accent-card">
+      <div class="link-icon accent-icon">📅</div>
+      <div class="link-body">
+        <div class="link-label">Highest Level of Support</div>
+        <div class="link-title">1:1 Coaching Consultation</div>
+        <div class="link-desc">Ready for personalized support? Apply for a 1:1 coaching consultation.</div>
+      </div>
+      <div class="link-right">
+        <span class="link-badge green-badge">Apply</span>
+        <span class="link-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <strong>Coach Paris Simone</strong> · Passports 2 Fitness<br>
+    Stress-Integrated Strength System™
+  </div>
+
+</div>
+</body>
+</html>
